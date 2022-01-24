@@ -26,6 +26,10 @@
         
         <!-- Base CSS -->
         <link rel="stylesheet" href= {% static "css/base.css" %}>
+        {% block base_css %}
+        {% endblock base_css %}
+        {% block view_css %}
+        {% endblock view_css %}
 
     </head>
     <body>

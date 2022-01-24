@@ -1,21 +1,33 @@
 {% load static %}
 <link rel="stylesheet" href={% static "css/navbar.css" %}>
-<nav class="navbar navbar-expand-lg " color-on-scroll="500">
+</style>
+<nav class="navbar navbar-expand-lg" color-on-scroll="500">
     <div class="container-fluid">
-        <a href="#" class="nav-link">LOGO</a>
-        <button href="" class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-bar burger-lines"></span>
-            <span class="navbar-toggler-bar burger-lines"></span>
-            <span class="navbar-toggler-bar burger-lines"></span>
-        </button>
+        <a href="{% url 'root:home' %}" class="nav-link"><img class="bi" width="32" height="32" src = {% static "img/brand-logo.svg" %}/></a>
         <div class="collapse navbar-collapse justify-content-end" id="navigation">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id='nav-link-signup' href="#">signup</a>
-                </li>
+            <ul class="navbar-nav ml-auto ">
+                {% if not request.user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'user:login' %}">login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id='nav-link-signup' href="{% url 'user:signup' %}">signup</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a href="#" class="nav-link dropdown-toggle" id="dropdownUser" data-bs-toggle="dropdown" aria-expanded="false" style="font-weight: normal;">
+                            <img src={% static "img/basic_profile.jpeg" %} alt="" width="24" height="24" class="profile-img rounded-circle me-2">
+                            <strong class="px-1">{{ user.name }}</strong>
+                        </a>
+                        <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser" >
+                            <li><a class="dropdown-item" href="#">New project...</a></li>
+                            <li><a class="dropdown-item" href="#">Settings</a></li>
+                            <li><a class="dropdown-item" href="#">Profile</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="{% url 'user:logout' %}">logout</a></li>
+                        </ul>
+                    </li>
+                {% endif %}
             </ul>
         </div>
     </div>

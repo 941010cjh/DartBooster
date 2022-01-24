@@ -1,8 +1,27 @@
 {% extends 'root/base.html' %}
-
-{% block css %}
-{% endblock css %}
+{% load static %}
+{% block view_css %}
+    <link rel="stylesheet" href={% static "css/root/home.css" %}>
+{% endblock view_css %}
 
 {% block content %}
-    <p>hi</p>
+<div class='bg-text'>
+    <div class="row">
+        <h1 class= "brand-title" style="font-family: 'Pacifico', cursive; font-weight:400; font-style:normal; font-size: 7vw; ">DartBooster</h1>
+        {% for msg in messages %}
+            <div class="mt-1">{{ msg }}</div>
+        {% endfor %}
+    </div>
+    
+    <div class="row mt-5">
+        <div class="container">
+            {% if not request.user.is_authenticated %}
+                {% block user_form %}
+                {% endblock user_form %}
+            {% else %}
+                <a roll='button' class="btn btn-light btn-outline-dark btn-lg mt-4 rounded-pill px-5 py-2" href="#">Go to Dashboard</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
 {% endblock content %}

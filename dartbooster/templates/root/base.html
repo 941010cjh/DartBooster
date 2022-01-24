@@ -5,22 +5,25 @@
 {% endblock meta %}
 
 <!-- CSS Block -->
-<link rel="stylesheet" href= {% static "css/base.css" %}>
-{% block css %}
-{% endblock css %}
+
+{% block base_css %}
+    <link rel="stylesheet" href= {% static "css/root/base.css" %}>
+{% endblock base_css %}
 
 <!-- App -->
 {% block app_base %}
-        <!-- NavBar -->
-        {% include 'navbar.html' %}
-        <!-- Contents -->
-        <div class="container-fluid">
-            <div class="container">
+        
+        <div class="wrapper">
+            <!-- NavBar -->
+            {% include 'navbar.html' %}
+            <!-- Contents -->
+            <div class="contents-container">
                 {% block content %}
                     view:{{ view }}
                     data:{{ data }}
                 {% endblock content %}
             </div>
         </div>
+        
         
 {% endblock app_base %}

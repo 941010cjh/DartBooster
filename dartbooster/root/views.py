@@ -1,7 +1,6 @@
 from django.shortcuts import render
-from django.views.generic.base import TemplateView
+from user.views import LoginView
 # Create your views here.
 
-class HomeView(TemplateView):
+class HomeView(LoginView):
     template_name= __package__+'/home.html'
-    

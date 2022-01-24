@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'root',
+    'user',
 ]
 
 MIDDLEWARE = [
@@ -102,6 +103,18 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# User Authentication
+
+AUTH_USER_MODEL= 'user.User'
+LOGIN_URL = '/login/'
+LOGIN_REDIRECT_URL='/'
+LOGOUT_REDIRECT_URL = '/'
+
+EMAIL_PORT = 587
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'dartbooster@gmail.com'
+EMAIL_HOST_PASSWORD = 'dartwlghks0312!'
+EMAIL_USE_TLS = True
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
